@@ -41,7 +41,7 @@ public class SecondActivity extends Activity {
         }
         String template = userInputClass.toLowerCase(Locale.ROOT);
         Toast.makeText(getApplicationContext(), template, Toast.LENGTH_SHORT).show();
-        if (!template.equals("mage") && !template.equals("warrior") && template.equals("archer")){
+        if (!template.equals("mage") && !template.equals("warrior") && !template.equals("archer")){
             Toast.makeText(getApplicationContext(), "Incorrect class name!", Toast.LENGTH_SHORT).show();
             return;
         }
