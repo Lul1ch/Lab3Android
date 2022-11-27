@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DataBase Lab</string>
+    <string name="saveButton">Save</string>
+    <string name="updateButton">Update</string>
+    <string name="deleteButton">Delete</string>
+    <string name="startButton">Begin Combat</string>
+    <string name="nickname">Enter your Nickname</string>
+    <string name="className">Enter your class</string>
+    <string name="arenaNickname1">Enter first Nickname</string>
+    <string name="arenaNickname2">Enter second Nickname</string>
+    <string name="remark">Available classes now: warrior, archer, mage</string>
+    <string name="areanaRemark">You are in arena hall. Enter nicknames of two fighters, press "Start Button" and watch their combat</string>
+    <string name="nicknameMain">Nickname</string>
+    <string name="classNameMain">Class</string>
+    <string name="levelMain">Level</string>
+    <string name="selectParams">Choose selection parameters</string>
+    <string name="classSelect">Choose class to select</string>
+    <string name="minSelectLevel">Choose min level</string>
+    <string name="maxSelectLevel">Choose max level</string>
+</resources>

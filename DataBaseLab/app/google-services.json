@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6920100970",
+    "project_id": "ageapp-b3b90",
+    "storage_bucket": "ageapp-b3b90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6920100970:android:102af0e7fb5f116db63e13",
+        "android_client_info": {
+          "package_name": "com.example.databaselab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6920100970-q9509dpskjt7pi2p1q9k71gu0lq5a88l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDte2upzy0C5WPn3aWbPZiVBedolaZcjC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6920100970-q9509dpskjt7pi2p1q9k71gu0lq5a88l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
