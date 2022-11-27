@@ -40,6 +40,8 @@ public class ArenaAdapter extends RecyclerView.Adapter<ArenaAdapter.ArenaViewHol
 
         holder.textViewClass2.setText(this.playerList.get(pos+1).getPlayerClass());
         holder.textViewLevel2.setText(String.valueOf(this.playerList.get(pos+1).getPlayerLevel()));
+
+        holder.ResultCombat.setText(t.getResult());
     }
 
     @Override
@@ -49,7 +51,7 @@ public class ArenaAdapter extends RecyclerView.Adapter<ArenaAdapter.ArenaViewHol
 
     class ArenaViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewName1, textViewClass1, textViewLevel1, textViewName2, textViewClass2, textViewLevel2;
+        TextView textViewName1, textViewClass1, textViewLevel1, textViewName2, textViewClass2, textViewLevel2, ResultCombat;
 
         public ArenaViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +63,8 @@ public class ArenaAdapter extends RecyclerView.Adapter<ArenaAdapter.ArenaViewHol
             textViewName2 = itemView.findViewById(R.id.pl_nick2);
             textViewClass2 = itemView.findViewById(R.id.pl_class2);
             textViewLevel2 = itemView.findViewById(R.id.pl_lvl2);
+
+            ResultCombat = itemView.findViewById(R.id.result);
         }
     }
 

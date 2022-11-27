@@ -36,6 +36,7 @@ public class ArenaActivity extends Activity {
             @Override
             protected List<CombatResult> doInBackground(Void... voids) {
                 List<CombatResult> resultsList = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().CombatResultsDao().getAll();
+
                 for(int i = 0; i < resultsList.size();i++){
                     if (resultsList.get(i) != null) {
                         List<PlayerDao.PlInfo> tempList = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().PlayerDao().getFightersInfo(resultsList.get(i).getFNickName(), resultsList.get(i).getSNickName());
