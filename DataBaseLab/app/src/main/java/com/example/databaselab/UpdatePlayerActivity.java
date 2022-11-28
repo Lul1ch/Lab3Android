@@ -80,7 +80,7 @@ public class UpdatePlayerActivity extends Activity {
         }
 
         String template = sClass.toLowerCase(Locale.ROOT);
-        if (template != "mage" || template != "warrior"  || template != "archer" ){
+        if (!template.equals("mage") && !template.equals("warrior") && !template.equals("archer")){
             Toast.makeText(getApplicationContext(), "Incorrect class name!", Toast.LENGTH_SHORT).show();
             return;
         }
