@@ -38,8 +38,24 @@ public class MainActivity extends AppCompatActivity {
             Intent goForward = new Intent(MainActivity.this, mainFindActivity.class);
             startActivity(goForward);
         });
+
+        findViewById(R.id.addClasses).setOnClickListener(x -> {
+                    String[][] ClassesArr = {
+                            {"mage", "2", "4", "25"},
+                            {"warrior", "1.1", "2", "100"},
+                            {"archer", "1.5", "3", "55"}
+                    };
+                    for (int i = 0; i < ClassesArr.length; i++) {
+                        ClassDescription classToInsert = new ClassDescription();
+                        classToInsert.setClassName(ClassesArr[i][0]);
+                        classToInsert.setMinDamageMultiplier(Float.parseFloat(ClassesArr[i][1]));
+                        classToInsert.setMaxDamageMultiplier(Float.parseFloat(ClassesArr[i][2]));
+                        classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
+                        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
+                    }
+                    Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
+        });
         getPersons();
-        importClasses();
     }
 
     private void getPersons() {
@@ -63,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         gt.execute();
     }
 
-    private void importClasses(){
+    /*private void importClasses(){
 
-        class GetPersons extends AsyncTask<Void, Void, Integer> {
+        class SetClasses extends AsyncTask<Void, Void, Integer> {
 
             @Override
             protected Integer doInBackground(Void... voids) {
@@ -91,17 +107,17 @@ public class MainActivity extends AppCompatActivity {
                         classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
                         DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
                     }
-                    Toast.makeText(getApplicationContext(), "База классов загружена загружена", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("Ya","Num is not zero");
                 }
             }
         }
 
-        GetPersons gt = new GetPersons();
+        SetClasses gt = new SetClasses();
         gt.execute();
 
-    }
+    }*/
 
 
 }
