@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goForward);
         });
         getPersons();
-        //importClasses();
+        importClasses();
     }
 
     private void getPersons() {
@@ -58,6 +61,46 @@ public class MainActivity extends AppCompatActivity {
 
         GetPersons gt = new GetPersons();
         gt.execute();
+    }
+
+    private void importClasses(){
+
+        class GetPersons extends AsyncTask<Void, Void, Integer> {
+
+            @Override
+            protected Integer doInBackground(Void... voids) {
+                Integer classCount = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().getClassNum();
+                return classCount;
+            }
+
+            @Override
+            protected void onPostExecute(Integer num) {
+                super.onPostExecute(num);
+                if (num == 0){
+                    Log.d("Ya","Num is zero");
+                    String[][] ClassesArr = {
+                            {"mage", "2", "4", "25"},
+                            {"warrior", "1.1", "2","100"},
+                            {"archer", "1.5", "3","55"}
+                    };
+                    for (int i = 0; i < ClassesArr.length;i++){
+                        ClassDescription classToInsert = new ClassDescription();
+                        classToInsert.setClassName(ClassesArr[i][0]);
+                        classToInsert.setMinDamageMultiplier(Float.parseFloat(ClassesArr[i][1]));
+                        classToInsert.setMaxDamageMultiplier(Float.parseFloat(ClassesArr[i][2]));
+                        classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
+                        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
+                    }
+                    Toast.makeText(getApplicationContext(), "База классов загружена загружена", Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("Ya","Num is not zero");
+                }
+            }
+        }
+
+        GetPersons gt = new GetPersons();
+        gt.execute();
+
     }
 
 

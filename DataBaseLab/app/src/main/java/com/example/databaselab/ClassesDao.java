@@ -15,6 +15,9 @@ public interface ClassesDao {
     @Query("SELECT * FROM classes")
     List<ClassDescription> getAll();
 
+    @Query("SELECT COUNT(*) FROM classes")
+    Integer getClassNum();
+
     @Query("SELECT * FROM classes WHERE class = :className1 OR class = :className2")
     List<ClassDescription> getClassPairInfo(String className1, String className2);
 
@@ -26,6 +29,9 @@ public interface ClassesDao {
 
     @Query("SELECT healthBonus FROM classes")
     int getHealthBonus();
+
+    @Query("DELETE FROM classes")
+    void deleteAll();
 
     @Insert
     void insert(ClassDescription classInfo);
