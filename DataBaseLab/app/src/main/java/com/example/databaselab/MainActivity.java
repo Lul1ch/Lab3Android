@@ -18,7 +18,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-
+    String[][] ClassesArr = {
+            {"mage", "2", "4", "25"},
+            {"warrior", "1.1", "2", "100"},
+            {"archer", "1.5", "3", "55"}
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,27 +44,7 @@ public class MainActivity extends AppCompatActivity {
             Intent goForward = new Intent(MainActivity.this, mainFindActivity.class);
             startActivity(goForward);
         });
-
-        Button buttonLoadClasses = findViewById(R.id.addClasses);
-        buttonLoadClasses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                String[][] ClassesArr = {
-                        {"mage", "2", "4", "25"},
-                        {"warrior", "1.1", "2", "100"},
-                        {"archer", "1.5", "3", "55"}
-                };
-                for (int i = 0; i < ClassesArr.length; i++) {
-                    ClassDescription classToInsert = new ClassDescription();
-                    classToInsert.setClassName(ClassesArr[i][0]);
-                    classToInsert.setMinDamageMultiplier(Float.parseFloat(ClassesArr[i][1]));
-                    classToInsert.setMaxDamageMultiplier(Float.parseFloat(ClassesArr[i][2]));
-                    classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
-                    DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
-                }
-                Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
-            }
-        });
+        
         getPersons();
     }
 
@@ -70,6 +54,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected List<Player> doInBackground(Void... voids) {
                 List<Player> playerList = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().PlayerDao().getAll();
+                Integer classCount = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().getClassNum();
+                if (classCount == 0) {
+                    for (String[] temp : ClassesArr) {
+                        ClassDescription classToInsert = new ClassDescription();
+                        classToInsert.setClassName(temp[0]);
+                        classToInsert.setMinDamageMultiplier(Float.parseFloat(temp[1]));
+                        classToInsert.setMaxDamageMultiplier(Float.parseFloat(temp[2]));
+                        classToInsert.setHealthBonus(Float.parseFloat(temp[3]));
+                        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
+                    }
+                    Log.d("Ya", "Loaded");
+                } else {
+                    Log.d("Ya", "NumIsNotNull");
+                }
+                //Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
+
                 return playerList;
             }
 

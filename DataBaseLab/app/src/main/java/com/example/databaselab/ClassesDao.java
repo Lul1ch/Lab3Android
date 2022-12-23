@@ -33,7 +33,7 @@ public interface ClassesDao {
     @Query("DELETE FROM classes")
     void deleteAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ClassDescription classInfo);
 
     @Delete
