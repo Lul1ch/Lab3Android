@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,21 +41,25 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goForward);
         });
 
-        findViewById(R.id.addClasses).setOnClickListener(x -> {
-                    String[][] ClassesArr = {
-                            {"mage", "2", "4", "25"},
-                            {"warrior", "1.1", "2", "100"},
-                            {"archer", "1.5", "3", "55"}
-                    };
-                    for (int i = 0; i < ClassesArr.length; i++) {
-                        ClassDescription classToInsert = new ClassDescription();
-                        classToInsert.setClassName(ClassesArr[i][0]);
-                        classToInsert.setMinDamageMultiplier(Float.parseFloat(ClassesArr[i][1]));
-                        classToInsert.setMaxDamageMultiplier(Float.parseFloat(ClassesArr[i][2]));
-                        classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
-                        DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
-                    }
-                    Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
+        Button buttonLoadClasses = findViewById(R.id.addClasses);
+        buttonLoadClasses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                String[][] ClassesArr = {
+                        {"mage", "2", "4", "25"},
+                        {"warrior", "1.1", "2", "100"},
+                        {"archer", "1.5", "3", "55"}
+                };
+                for (int i = 0; i < ClassesArr.length; i++) {
+                    ClassDescription classToInsert = new ClassDescription();
+                    classToInsert.setClassName(ClassesArr[i][0]);
+                    classToInsert.setMinDamageMultiplier(Float.parseFloat(ClassesArr[i][1]));
+                    classToInsert.setMaxDamageMultiplier(Float.parseFloat(ClassesArr[i][2]));
+                    classToInsert.setHealthBonus(Float.parseFloat(ClassesArr[i][3]));
+                    DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().ClassesDao().insert(classToInsert);
+                }
+                Toast.makeText(getApplicationContext(), "База классов загружена", Toast.LENGTH_LONG).show();
+            }
         });
         getPersons();
     }
